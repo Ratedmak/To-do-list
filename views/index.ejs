@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-DO list</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital@1&family=Montserrat:ital@1&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css"/>
+    
+
+</head>
+<body>
+   <header> <nav class="py-2 border-bottom">
+        <div class="container d-flex flex-wrap">
+          <ul class="nav me-auto">
+            <li class="nav-item"><a href="/"  class="nav-link link-body-emphasis px-2 active" aria-current="page">Today</a></li>
+            <li class="nav-item"><a href="/work"  class="nav-link link-body-emphasis px-2">Work</a></li>
+           </ul>
+        </div>
+      </nav></header>
+    <% if(locals.work){ %>
+     
+      <div class="h1">  <h1>work List</h1></div>
+      <div class="typebox">
+      <% if(locals.list_2){ 
+       
+        for(let i=0;i<=list_2.length-1;i++){%> 
+        <div class="box-inside">
+          <div class="strike"><input type='checkbox' class='checkbox'  >
+          <p class="para"  >  <%=list_2[i]%> </p></div> <hr></div>
+       
+      <%}}%>
+      <div class="form">
+      <form action="/work" method="post">
+        <input  class="type" type="text"  name="newitem1" placeholder="New Item">
+        <button class="btn" type="submit">+</button>
+      </form></div></div>
+   <% } else{ %>
+<div class="h1">
+    <h1> <%= new Intl.DateTimeFormat('en-GB', { year: 'numeric', month: 'long', day: '2-digit'}).format(new Date()) %> </h1> 
+</div>
+    <div class="typebox">
+    <% if(locals.list_1){ %>
+    <% for(let i=0;i<=list_1.length-1;i++){%>
+      <div class="box-inside"> 
+       <div class="strike"> 
+        <input type='checkbox' class='checkbox' >
+        <p class="para" ><%=list_1[i]%></p>
+        </div>
+      <hr>
+      </div> 
+    <%}}%>
+    <div class="form"><form action="/" method="post">
+    <input  class="type" type="text"  name="newitem2" placeholder="New Item">
+    <button class="btn" type="submit">+</button>
+    </form></div></div> 
+  
+    <% } %>
+    
+    
+    
+
+  
+
+
+</body>
+</html>
